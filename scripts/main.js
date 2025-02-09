@@ -1074,7 +1074,7 @@ function setSiteLogo() {
 
 (function($) {
 	retrieveStateFromUrlParams();
-	showPage(currentPage, { family: decodeURIComponent(getUrlParams().family), newspecies: decodeURIComponent(getUrlParams().newspecies) }, false);
+	showPage(currentPage, { family: decodeURIComponent(getUrlParams().family), newspecies: decodeURIComponent(getUrlParams().newspecies), rating: ratingFilter }, false);
 
 	window.onpopstate = function(state) {
 		if(state.state) {
