@@ -114,6 +114,16 @@ span.tags {
 	font-size: 14px;
 }
 
+.sighting-desc .latin-name {
+	font-style: italic;
+	font-weight: bold;
+}
+.sighting-desc .ref {
+	color: #c0f2ff;
+	padding-left: 15px;
+	text-decoration: none;
+}
+
 .sighting-desc.rating {
 	display: inline-block;
 	color: #b9f2ff;

@@ -96,3 +96,5 @@ var OPT_WEATHER = {
 	"Cloudy": "Cloudy",
 	"Snowy": "Snowy"
 };
+
+var EBIRD_SPECIES_BASE_URL = "https://ebird.org/species/";

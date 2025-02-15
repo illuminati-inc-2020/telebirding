@@ -230,7 +230,7 @@ function deleteSighting(sightingKey) {
 	}
 }
 
-function saveSpecies(key, name, tags, family) {
+function saveSpecies(key, name, tags, family, latin_name, ebird_code) {
 	if(!name || !tags || !family) {
 		alert("All fields are mandatory");
 	} else {
@@ -241,7 +241,9 @@ function saveSpecies(key, name, tags, family) {
 			key: key,
 			name: name,
 			tags: tags.split(/\s*,\s*/ig),
-			family: family
+			family: family,
+			latin_name: (latin_name || null),
+			ebird_code: (ebird_code || null)
 		};
 		data.species = Object.fromEntries(Object.entries(data.species).sort());
 		uploadJSONData("species");
@@ -307,11 +309,15 @@ function fillUpdateSpeciesForm() {
 		updateSpeciesForm.find("input[data-field=tags]").val(species.tags.join(", "));
 		updateSpeciesForm.find("select[data-field=family]").val(species.family).trigger("change");
 		updateSpeciesForm.find("select[data-field=family] option[value='" + species.family + "']").attr("selected", "selected").trigger("change");
+		updateSpeciesForm.find("input[data-field=latin-name]").val(species.latin_name);
+		updateSpeciesForm.find("input[data-field=ebird-code]").val(species.ebird_code);
 		updateSpeciesForm.find("button.submit").html("Update");
 	} else {
 		updateSpeciesForm.find("input[data-field=name]").val('');
 		updateSpeciesForm.find("input[data-field=tags]").val('');
 		updateSpeciesForm.find("select[data-field=family]").val('').trigger("change");
+		updateSpeciesForm.find("input[data-field=latin-name]").val('');
+		updateSpeciesForm.find("input[data-field=ebird-code]").val('');
 		updateSpeciesForm.find("button.submit").html("Add");
 	}
 }
@@ -344,7 +350,9 @@ function render() {
 	fillUpdateSpeciesForm();
 	updateSpeciesForm.find("select[data-field=key]").change(fillUpdateSpeciesForm);
 	updateSpeciesForm.find("button.submit").click(function() {
-		saveSpecies(updateSpeciesForm.find("select[data-field=key]").val(), updateSpeciesForm.find("input[data-field=name]").val(), updateSpeciesForm.find("input[data-field=tags]").val(), updateSpeciesForm.find("select[data-field=family]").val());
+		saveSpecies(updateSpeciesForm.find("select[data-field=key]").val(), updateSpeciesForm.find("input[data-field=name]").val(), 
+			updateSpeciesForm.find("input[data-field=tags]").val(), updateSpeciesForm.find("select[data-field=family]").val(),
+			updateSpeciesForm.find("input[data-field=latin-name]").val(), updateSpeciesForm.find("input[data-field=ebird-code]").val());
 	});
 	updateSpeciesForm.find("select[data-field=key]").select2();
 	updateSpeciesForm.find("select[data-field=family]").select2();

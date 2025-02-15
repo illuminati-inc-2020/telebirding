@@ -297,6 +297,18 @@ function renderSightingDetails(sightingLabelDiv, sighting, inPreviewPage) {
 			sightingNameDiv.append('<span class="tags" title="' + capitalize(tagType) + '">' + plumage + '</span> ');
 		}
 	});
+
+	if(inPreviewPage && (sighting.species.latin_name || sighting.species.ebird_code)) {
+		var refDiv = '<div class="sighting-desc">';
+		if(sighting.species.latin_name) {
+			refDiv += '<span class="latin-name">' + sighting.species.latin_name + '</span>';
+		}
+		if(sighting.species.ebird_code) {
+			refDiv += '<a class="ref" href="' + EBIRD_SPECIES_BASE_URL + sighting.species.ebird_code + '" target="_blank">( 🔗eBird )</a>';
+		}
+		refDiv += '</div>';
+		sightingLabelDiv.append(refDiv);
+	}
 	
 	var aPlace = (sighting.place ? ('<a class="place" onclick="triggerFilter(\'place\', \'' + sighting.place + '\')">' + (inPreviewPage ? sighting.place : trimPlaceName(sighting.place, 25)) + '</a>, ') : '');
 	var aCity = (sighting.city ? ('<a class="city" onclick="triggerFilter(\'place\', \'' + sighting.city + '\')">' + (inPreviewPage ? sighting.city : trimPlaceName(sighting.city, 15)) + '</a>, ') : '');
@@ -397,6 +409,11 @@ function renderSightingThumbnail(photosDiv, sightingToRender, mediaToRender, sel
 
 function renderSightingThumbnailsAndDescription(div, selectedSighting, selectedMedia, baseSightingIndex) {
 	div.append('<div class="sighting-desc description"><span>' + (selectedSighting.description || '') + '</span></div>');
+
+	if(selectedSighting.species.ebird_code) {
+		// TODO
+		// div.append('<div class="sighting-desc description"></div>')
+	}
 
 	selectedSighting.species.media = [];
 	div.append('<div class="photos section-1"></div>');
@@ -1130,4 +1147,8 @@ $(document).ready(function() {
 			window.location.replace("/admin");
 		});
 	}
+
+	// remove scroll-up-highlighter on scroll/click
+	$(".home").scroll(() => { $('.scroll-up-highlighter').remove(); $(".home").off("scroll"); $(".home").off("click"); });
+	$(".home").click(() => { $('.scroll-up-highlighter').remove(); $(".home").off("scroll"); $(".home").off("click"); });
 });
