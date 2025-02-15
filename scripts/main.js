@@ -299,7 +299,7 @@ function renderSightingDetails(sightingLabelDiv, sighting, inPreviewPage) {
 	});
 
 	if(inPreviewPage && (sighting.species.latin_name || sighting.species.ebird_code)) {
-		var refDiv = '<div class="sighting-desc">';
+		var refDiv = '<div class="sighting-desc margin-bottom-10px">';
 		if(sighting.species.latin_name) {
 			refDiv += '<span class="latin-name">' + sighting.species.latin_name + '</span>';
 		}

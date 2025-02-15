@@ -713,11 +713,11 @@ button.right-pane-button.button-active:before {
 	animation-duration: 6s;
 }
 @keyframes scroll-up-highlighter {
-  0%  {transform: translateY(50px); opacity: 75%;}
+  0%  {transform: translateY(50px); opacity: 90%;}
   33%  {transform: translateY(0px); opacity: 0%;}
-  33.001%  {transform: translateY(50px); opacity: 50%;}
+  33.001%  {transform: translateY(50px); opacity: 60%;}
   66%  {transform: translateY(0px); opacity: 0%;}
-  66.001%  {transform: translateY(50px); opacity: 25%;}
+  66.001%  {transform: translateY(50px); opacity: 30%;}
   100%  {transform: translateY(0px); opacity: 0%;}
 }
 
