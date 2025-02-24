@@ -1009,6 +1009,10 @@ function showPage(page, params, isPopstate) {
 		}
 
 		setSiteLogo();
+
+		if(currentPage != HOME) {
+			$('.scroll-up-highlighter').remove();
+		}
 	});
 }
 
